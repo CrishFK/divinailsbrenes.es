@@ -1,0 +1,53 @@
+body {
+  background: #0f0f0f;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.main-container {
+  max-width: 500px;
+  padding: 40px 20px;
+}
+
+.title {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #ccc;
+  margin-bottom: 30px;
+}
+
+.btn-main {
+  background: #ff4da6;
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 18px;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.btn-main:hover {
+  background: #ff1a8c;
+}
+
+.btn-whatsapp {
+  background: #25D366;
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 18px;
+  display: block;
+}
+
+.btn-whatsapp:hover {
+  background: #1ebe5d;
+}
+
+.footer {
+  margin-top: 30px;
+  font-size: 14px;
+  color: #777;
+}
