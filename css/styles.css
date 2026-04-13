@@ -2,6 +2,7 @@ body {
   background: white;
   color: black;
   font-family: Arial, sans-serif;
+  padding-bottom: 120px;
 }
 
 .main-container {
@@ -92,4 +93,115 @@ body {
   max-width: 100%;
   max-height: 90vh;
   object-fit: contain;
+}
+
+.floating-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 999;
+}
+
+.btn-float {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px 18px;
+  border-radius: 30px;
+
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+
+  color: black;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: all 0.2s ease;
+}
+
+.btn-float i {
+  font-size: 16px;
+}
+
+.btn-float:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+/* ICONO WHATSAPP */
+.btn-float .fa-whatsapp {
+  color: #25D366;
+}
+
+/* ICONO CALENDARIO (azul pastel) */
+.btn-float .fa-calendar-alt {
+  color: #8fbfff;
+}
+
+.btn-float:hover i {
+  transform: scale(1.15);
+}
+
+.floating-buttons {
+  bottom: calc(20px + env(safe-area-inset-bottom));
+}
+
+.services {
+  text-align: left;
+  margin-top: 30px;
+}
+
+.section-title {
+  font-size: 20px;
+  margin: 25px 0 10px;
+  font-weight: 600;
+}
+
+.service-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0,0,0,0.04);
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  transition: all 0.2s ease;
+}
+
+.service-card:hover {
+  background: rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+
+.service-card h3 {
+  font-size: 16px;
+  margin: 0;
+}
+
+.service-card p {
+  font-size: 13px;
+  color: #777;
+  margin: 5px 0 0;
+}
+
+.service-price {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.service-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.service-card.show {
+  opacity: 1;
+  transform: translateY(0);
 }
