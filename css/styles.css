@@ -6,8 +6,8 @@ body {
 }
 
 .main-container {
-  max-width: 500px;
-  padding: 40px 20px;
+  width: 100%;
+  padding: 40px 40px;
 }
 
 .title {
@@ -16,7 +16,7 @@ body {
 }
 
 .subtitle {
-  color: #ccc;
+  color: #777;
   margin-bottom: 30px;
 }
 
