@@ -130,3 +130,11 @@ function revealOnScroll() {
 
 window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
+
+function openCalendarModal() {
+  document.getElementById("calendarModal").style.display = "flex";
+}
+
+function closeCalendarModal() {
+  document.getElementById("calendarModal").style.display = "none";
+}
