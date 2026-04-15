@@ -138,3 +138,12 @@ function openCalendarModal() {
 function closeCalendarModal() {
   document.getElementById("calendarModal").style.display = "none";
 }
+
+const dias = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+const hoy = dias[new Date().getDay()];
+
+document.querySelectorAll(".footer-hours li strong").forEach(el => {
+    if (el.textContent === hoy) {
+        el.parentElement.classList.add("today");
+    }
+});
