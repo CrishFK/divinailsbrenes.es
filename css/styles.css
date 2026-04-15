@@ -1,5 +1,5 @@
 body {
-  background: #a7defc47;
+  background: #00a5ff33;
   color: black;
   font-family: Arial, sans-serif;
 }
@@ -17,7 +17,7 @@ body {
 .subtitle {
   font-size: 16px;
   font-weight: 400;
-  color: #777;
+  color: #484848;
   margin-bottom: 30px;
   letter-spacing: 0.5px;
 }
@@ -121,7 +121,7 @@ body {
   padding: 12px 18px;
   border-radius: 30px;
 
-  background: rgba(255, 255, 255, 0.15);
+  background: #52c2ff78;
   backdrop-filter: blur(10px);
 
   color: black;
@@ -149,7 +149,7 @@ body {
 
 /* ICONO CALENDARIO (azul pastel) */
 .btn-float .fa-calendar-alt {
-  color: #8fbfff;
+  color: #006dff;
 }
 
 .btn-float:hover i {
@@ -194,7 +194,7 @@ body {
 
 .service-card p {
   font-size: 13px;
-  color: #777;
+  color: #484848;
   margin: 5px 0 0;
 }
 
