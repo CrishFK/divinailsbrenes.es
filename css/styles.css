@@ -146,10 +146,7 @@ body {
   color: #25D366;
 }
 
-.btn-float .fa-calendar-alt {
-  color: #006dff;
-}
-
+.btn-float .fa-calendar-alt,
 .btn-float .fa-rotate-left {
   color: #006dff;
 }
