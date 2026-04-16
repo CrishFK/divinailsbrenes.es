@@ -146,3 +146,14 @@ if (diasFooter.length) {
     }
   });
 }
+
+
+let initialHeight = window.innerHeight;
+
+window.addEventListener("resize", () => {
+  if (window.innerHeight < initialHeight - 100) {
+    document.body.classList.add("keyboard-open");
+  } else {
+    document.body.classList.remove("keyboard-open");
+  }
+});
