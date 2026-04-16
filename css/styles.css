@@ -404,4 +404,12 @@ body {
   .seo-blocks {
     grid-template-columns: 1fr;
   }
+
+  .calendar-container {
+    height: calc(100vh - 140px);
+  }
+
+  .floating-buttons {
+    bottom: 130px;
+  }
 }
