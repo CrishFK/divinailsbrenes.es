@@ -348,7 +348,7 @@ body {
 }
 
 .seo-card {
-  background: rgba(255,255,255,0.6);
+  background: rgb(255 255 255 / 26%);
   backdrop-filter: blur(10px);
   padding: 20px;
   border-radius: 15px;
