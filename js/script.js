@@ -146,3 +146,40 @@ if (diasFooter.length) {
     }
   });
 }
+
+const buttons = document.querySelector(".floating-buttons");
+
+function hideButtons() {
+  if (buttons) buttons.classList.add("hide");
+}
+
+function showButtons() {
+  if (buttons) buttons.classList.remove("hide");
+}
+
+// Cuando escribe (inputs tuyos)
+document.addEventListener("focusin", function(e) {
+  if (e.target.matches("input, textarea")) {
+    hideButtons();
+  }
+});
+
+// Cuando deja de escribir
+document.addEventListener("focusout", function() {
+  setTimeout(() => {
+    const active = document.activeElement;
+    if (!active || !active.matches("input, textarea")) {
+      showButtons();
+    }
+  }, 100);
+});
+
+// EXTRA: al tocar pantalla (útil para iframe)
+document.addEventListener("touchstart", function() {
+  hideButtons();
+
+  setTimeout(() => {
+    showButtons();
+  }, 2000); // vuelven después de 2s
+});
+
