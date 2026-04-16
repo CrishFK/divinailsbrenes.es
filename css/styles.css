@@ -323,6 +323,23 @@ body {
   border: none;
 }
 
+.no-scroll-page {
+  overflow: hidden;
+  height: 100vh;
+}
+
+.no-scroll-page .main-container {
+  padding: 20px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.no-scroll-page .calendar-container {
+  flex: 1;
+  height: auto;
+}
+
 @media (min-width: 768px) {
   .footer-content {
     grid-template-columns: 1fr 1fr 1fr;
