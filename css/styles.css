@@ -330,7 +330,7 @@ body {
 
 .no-scroll-page .main-container {
   padding: 20px;
-  height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
 }
@@ -409,5 +409,10 @@ body {
     top: 60px;
     bottom: auto;
     right: 15px;
+  }
+
+  .calendar-container {
+    height: calc(100dvh - 80px);
+    margin-bottom: 20px;
   }
 }
