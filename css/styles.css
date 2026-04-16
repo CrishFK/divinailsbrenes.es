@@ -325,7 +325,7 @@ body {
 
 .no-scroll-page {
   overflow: hidden;
-  height: 100vh;
+  height: 100dvh;
 }
 
 .no-scroll-page .main-container {
@@ -405,13 +405,9 @@ body {
     grid-template-columns: 1fr;
   }
 
-  .floating-buttons {
-    opacity: 1;
-    transition: opacity 0.3s ease;
-  }
-
-  .floating-buttons.hide {
-    opacity: 0;
-    pointer-events: none;
+  #floating-reservar {
+    top: 60px;
+    bottom: auto;
+    right: 15px;
   }
 }

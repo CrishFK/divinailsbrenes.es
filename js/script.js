@@ -146,12 +146,3 @@ if (diasFooter.length) {
     }
   });
 }
-
-const buttons = document.querySelector(".floating-buttons");
-
-// 👉 Ocultar al tocar cualquier input o textarea
-document.addEventListener("click", function(e) {
-  if (e.target.matches("input, textarea")) {
-    buttons?.classList.add("hide");
-  }
-});
