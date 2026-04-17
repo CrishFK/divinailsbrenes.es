@@ -140,7 +140,7 @@ window.addEventListener("resize", () => {
 const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTDS4PeimU8J66G_pFg9vnQqgFxWSr-KXoAh8i_tg9FM460VbyDGYCVHOs-FmQZzKBiVDE9WAfZ8JYw/pub?gid=0&single=true&output=csv";
 
 async function cargarServicios() {
-  const res = await fetch(url);
+  const res = await fetch(url + "&t=" + Date.now());
   const text = await res.text();
 
   const rows = text.split("\n").slice(1);
