@@ -112,27 +112,6 @@ function prevImage() {
   modalImg.src = "images/" + images[currentIndex];
 }
 
-// ANIMACIÓN CARDS
-const cards = document.querySelectorAll(".service-card");
-
-function revealOnScroll() {
-  if (!cards.length) return;
-
-  const trigger = window.innerHeight * 0.9;
-
-  cards.forEach(card => {
-    const top = card.getBoundingClientRect().top;
-    if (top < trigger) {
-      card.classList.add("show");
-    }
-  });
-}
-
-if (cards.length) {
-  window.addEventListener("scroll", revealOnScroll);
-  window.addEventListener("load", revealOnScroll);
-}
-
 // HORARIO
 const dias = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
 const hoy = dias[new Date().getDay()];
@@ -157,3 +136,58 @@ window.addEventListener("resize", () => {
     document.body.classList.remove("keyboard-open");
   }
 });
+
+const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTDS4PeimU8J66G_pFg9vnQqgFxWSr-KXoAh8i_tg9FM460VbyDGYCVHOs-FmQZzKBiVDE9WAfZ8JYw/pub?gid=0&single=true&output=csv";
+
+async function cargarServicios() {
+  const res = await fetch(url);
+  const text = await res.text();
+
+  const rows = text.split("\n").slice(1);
+
+  let htmlManicura = "";
+  let htmlPedicura = "";
+
+  rows.forEach(row => {
+    const cols = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g)?.map(c => c.replace(/^"|"$/g, ""));
+
+    const nombre = cols[0];
+    const descripcion = cols[1];
+    const tipo = cols[2];
+    const precio = parseFloat(cols[3]);
+    const descuento = parseFloat(cols[4]?.replace("%", "")) || 0;
+
+    if (!nombre || !tipo) return;
+
+    let precioFinal = parseFloat(cols[5]);
+
+    if (isNaN(precioFinal)) {
+      precioFinal = precio - (precio * descuento / 100);
+    }
+
+    const card = `
+      <div class="service-card">
+        ${descuento > 0 ? `<div class="badge-descuento">-${descuento}%</div>` : ""}
+        <div>
+          <h3>${nombre}</h3>
+          <p>${descripcion}</p>
+        </div>
+        <div class="service-price">
+          ${descuento > 0 ? `<span class="old-price">${precio}€</span>` : ""}
+          ${precioFinal}€
+        </div>
+      </div>
+    `;
+
+    if (tipo.toLowerCase().includes("manicura")) {
+      htmlManicura += card;
+    } else {
+      htmlPedicura += card;
+    }
+  });
+
+  document.getElementById("manicura-list").innerHTML = htmlManicura;
+  document.getElementById("pedicura-list").innerHTML = htmlPedicura;
+}
+
+document.addEventListener("DOMContentLoaded", cargarServicios);
