@@ -391,7 +391,8 @@ body {
 
 @media (min-width: 1200px) {
   .seo-blocks {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(220px, max-content));
+    justify-content: center;
   }
 }
 
@@ -409,6 +410,18 @@ body {
 }
 
 @media (max-width: 767px) {
+  #logo-main {
+    max-width: 90px !important;
+  }
+
+  .carousel-img {
+    height: 100px;
+  }
+
+  .main-container {
+    padding: 20px 15px;
+  }
+
   .footer-col {
     text-align: center;
   }
@@ -426,6 +439,8 @@ body {
 
   .seo-blocks {
     grid-template-columns: 1fr;
+    gap: 10px;
+    margin: 20px auto;
   }
 
   #floating-reservar {
@@ -437,9 +452,5 @@ body {
   .calendar-container {
     height: calc(100dvh - 80px);
     margin-bottom: 20px;
-  }
-
-  body.keyboard-open {
-    overflow: hidden;
   }
 }
