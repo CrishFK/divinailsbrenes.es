@@ -143,51 +143,63 @@ async function cargarServicios() {
   const res = await fetch(url + "&t=" + Date.now());
   const text = await res.text();
 
-  const rows = text.split("\n").slice(1);
+  const rows = text.split("\n");
+  rows.shift(); // quitar cabecera
 
-  let htmlManicura = "";
-  let htmlPedicura = "";
+  const fragManicura = document.createDocumentFragment();
+  const fragPedicura = document.createDocumentFragment();
 
-  rows.forEach(row => {
-    const cols = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g)?.map(c => c.replace(/^"|"$/g, ""));
+  for (let i = 0; i < rows.length; i++) {
+    const row = rows[i];
+    if (!row) continue;
 
-    const nombre = cols[0];
-    const descripcion = cols[1];
-    const tipo = cols[2];
-    const precio = parseFloat(cols[3]);
-    const descuento = parseFloat(cols[4]?.replace("%", "")) || 0;
+    const cols = row.split(","); // MUCHO más rápido que regex
 
-    if (!nombre || !tipo) return;
+    if (cols.length < 3) continue;
 
-    let precioFinal = parseFloat(cols[5]);
+    const nombre = cols[0]?.replace(/"/g, "");
+    const descripcion = cols[1]?.replace(/"/g, "");
+    const tipo = cols[2]?.toLowerCase();
+    const precio = +cols[3] || 0;
+    const descuento = +(cols[4]?.replace("%", "")) || 0;
 
-    if (isNaN(precioFinal)) {
+    if (!nombre || !tipo) continue;
+
+    let precioFinal = +cols[5];
+    if (!precioFinal) {
       precioFinal = precio - (precio * descuento / 100);
     }
 
-    const card = `
-      <div class="service-card">
-        ${descuento > 0 ? `<div class="badge-descuento">-${descuento}%</div>` : ""}
-        <div>
-          <h3>${nombre}</h3>
-          <p>${descripcion}</p>
-        </div>
-        <div class="service-price">
-          ${descuento > 0 ? `<span class="old-price">${precio}€</span>` : ""}
-          ${precioFinal}€
-        </div>
+    const div = document.createElement("div");
+    div.className = "service-card";
+
+    div.innerHTML = `
+      ${descuento > 0 ? `<div class="badge-descuento">-${descuento}%</div>` : ""}
+      <div>
+        <h3>${nombre}</h3>
+        <p>${descripcion}</p>
+      </div>
+      <div class="service-price">
+        ${descuento > 0 ? `<span class="old-price">${precio}€</span>` : ""}
+        ${precioFinal}€
       </div>
     `;
 
-    if (tipo.toLowerCase().includes("manicura")) {
-      htmlManicura += card;
+    if (tipo.includes("manicura")) {
+      fragManicura.appendChild(div);
     } else {
-      htmlPedicura += card;
+      fragPedicura.appendChild(div);
     }
-  });
+  }
 
-  document.getElementById("manicura-list").innerHTML = htmlManicura;
-  document.getElementById("pedicura-list").innerHTML = htmlPedicura;
+  const manicuraEl = document.getElementById("manicura-list");
+  const pedicuraEl = document.getElementById("pedicura-list");
+
+  manicuraEl.innerHTML = "";
+  pedicuraEl.innerHTML = "";
+
+  manicuraEl.appendChild(fragManicura);
+  pedicuraEl.appendChild(fragPedicura);
 }
 
 document.addEventListener("DOMContentLoaded", cargarServicios);
